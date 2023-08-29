@@ -1,0 +1,67 @@
+<template>
+
+
+
+    <lightning-card title={banner}>
+
+        <div style="margin-left:4%; margin:0px auto; width: 300px;">
+
+            <template if:true={showLoadingSpinner}>
+                <div>
+                    <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+                </div>
+            </template>
+            <!--lightning-card>
+                <template if:true={showObjList}>
+                    <div class="picklist-container">
+                        <lightning-combobox name="picklist" options={allObjects} onchange={handleObjectChange}>
+                        </lightning-combobox>
+                    </div>
+                </template>
+
+                <template if:true={showMappingTable}>
+                    <table>
+                        <tr>
+                            <th>Header</th>
+                            <th>Object Field</th>
+                        </tr>
+                        <template for:each={mappingData} for:item="map">
+                            <tr key={map.header}>
+                                <td>{map.header}</td>
+                                <td>
+                                    <lightning-combobox options={fieldsOptions} placeholder="Map Field"
+                                        value="Unmapped"></lightning-combobox>
+                                </td>
+                            </tr>
+
+                        </template>
+                    </table>
+                </template>
+            </lightning-card!-->
+            <template if:true={showSavedMappings}>
+                <lightning-combobox name="savedMappings" options={savedMappingsOptions} onchange={setSavedMapping}
+                    title="Saved Mappings" placeholder="Select a Saved Mapping"></lightning-combobox>
+            </template>
+            <div>
+                <lightning-input label="" name="file uploader" onchange={handleFilesChange} type="file" disabled={disableUpload}>
+                </lightning-input>
+            </div><br />
+            <div class="slds-text-body_small slds-text-color_error">{fileName}
+            </div>
+            <template if:false={disableDMLButton}>
+                <br />
+                <div style="display: flex;grid-auto-flow: column;flex align-content: space-around;grid-column-gap: 2%;">
+                    <lightning-button class="slds-m-top--medium" label="Upload to Salesforce" onclick={handleDML}
+                        variant="brand" disabled={disableDMLButton}></lightning-button>
+                </div>
+
+            </template>
+            <template if:true={settings}><p class="slds-text-body_small">{settings.Help_Text__c}
+            </p></template>
+            <template if:true={templateURL}><a href={templateURL} target="_blank">Download Template
+            </a></template>
+        </div>
+        
+
+    </lightning-card>
+</template>
